@@ -21,6 +21,12 @@ config :iori, IoriWeb.Endpoint,
   pubsub_server: Iori.PubSub,
   live_view: [signing_salt: "lKm1F9aq"]
 
+config :mime, :types, %{
+  "text/css" => ["css"],
+  "text/javascript" => ["js"],
+  "application/wasm" => ["wasm"]
+}
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

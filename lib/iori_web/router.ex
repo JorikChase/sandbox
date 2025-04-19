@@ -16,12 +16,12 @@ defmodule IoriWeb.Router do
 
   scope "/", IoriWeb do
     pipe_through :browser
-
     # Handle root path
     get "/", PageController, :index
 
-    # Handle site paths
-    get "/*path", PageController, :index
+    # Handle site paths and nested routes
+    get "/:site", PageController, :index
+    get "/:site/*path", PageController, :index
   end
 
   # Add live reload for development

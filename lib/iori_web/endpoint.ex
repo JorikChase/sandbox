@@ -23,10 +23,19 @@ defmodule IoriWeb.Endpoint do
 
   plug Plug.Static,
     at: "/",
-    from: {:iori, "priv/sites"},
+    from: {:iori, "priv/static/sites"},
     gzip: false,
-    only: ~w(index.html assets),
-    cache_control_for_etags: "public, max-age=86400"
+    # Allow all files but specify important types
+    only: ~w(assets css js images),
+    # Force correct MIME types for key files
+    content_types: %{
+      "css" => "text/css",
+      "js" => "text/javascript",
+      "wasm" => "application/wasm"
+    },
+    cache_control_for_etags: "public, max-age=86400",
+    # Disable strict MIME checking
+    headers: [{"x-content-type-options", ""}]
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
