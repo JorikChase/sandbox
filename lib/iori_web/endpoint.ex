@@ -19,17 +19,14 @@ defmodule IoriWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-plug IoriWeb.Plugs.RewriteHostPath
-plug Plug.Static,
-  at: "/",
-  from: {:iori, "priv/sites"},
-  gzip: false,
-  cache_control_for_etags: "public, max-age=86400"
+  plug IoriWeb.Plugs.RewriteHostPath
+
   plug Plug.Static,
     at: "/",
-    from: :iori,
+    from: {:iori, "priv/sites"},
     gzip: false,
-    only: IoriWeb.static_paths()
+    only: ~w(index.html assets),
+    cache_control_for_etags: "public, max-age=86400"
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

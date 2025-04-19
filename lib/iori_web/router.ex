@@ -14,10 +14,23 @@ defmodule IoriWeb.Router do
     plug :accepts, ["json"]
   end
 
-scope "/", IoriWeb do
-  pipe_through :browser
-  get "/*path", PageController, :index
-end
+  scope "/", IoriWeb do
+    pipe_through :browser
+
+    # Handle root path
+    get "/", PageController, :index
+
+    # Handle site paths
+    get "/*path", PageController, :index
+  end
+
+  # Add live reload for development
+  if Mix.env() == :dev do
+    scope "/" do
+      pipe_through :browser
+      forward "/phoenix/live_reload", Phoenix.LiveReloader
+    end
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", IoriWeb do
