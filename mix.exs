@@ -9,11 +9,7 @@ defmodule Iori.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       # If needed
       aliases: aliases(),
-      deps: deps(),
-      # Add this:
-      assets: [
-        "priv/static/sites/**/*"
-      ]
+      deps: deps()
     ]
   end
 
