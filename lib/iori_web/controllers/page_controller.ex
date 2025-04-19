@@ -26,7 +26,7 @@ defmodule IoriWeb.PageController do
   defp site_path(site) do
     # Use the source directory directly in development
     if Mix.env() == :dev do
-      Path.expand("priv/static/sites/#{String.downcase(site)}/index.html", File.cwd!())
+      Path.expand("priv/static/sites/#{site}/index.html", File.cwd!())
     else
       Application.app_dir(:iori, Path.join(["priv/static/sites", site, "index.html"]))
     end
