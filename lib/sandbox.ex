@@ -1,6 +1,6 @@
-defmodule Iori do
+defmodule Sandbox do
   @moduledoc """
-  Iori keeps the contexts that define your domain
+  Sandbox keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

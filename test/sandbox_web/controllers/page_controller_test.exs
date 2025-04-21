@@ -1,5 +1,5 @@
-defmodule IoriWeb.PageControllerTest do
-  use IoriWeb.ConnCase
+defmodule SandboxWeb.PageControllerTest do
+  use SandboxWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

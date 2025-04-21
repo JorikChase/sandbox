@@ -1,13 +1,13 @@
-defmodule Iori.MixProject do
+defmodule Sandbox.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :iori,
+      app: :sandbox,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
-      # If needed
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -18,7 +18,7 @@ defmodule Iori.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Iori.Application, []},
+      mod: {Sandbox.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -32,13 +32,14 @@ defmodule Iori.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.21"},
+      {:phoenix, "~> 1.7.20"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 1.0"},
+      {:phoenix_live_view, "~> 1.0.0"},
       {:floki, ">= 0.30.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.1.1",
@@ -53,9 +54,7 @@ defmodule Iori.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"},
-      {:mint, "~> 1.7"},
-      {:phoenix_live_dashboard, "~> 0.8.6"}
+      {:bandit, "~> 1.5"}
     ]
   end
 
@@ -69,10 +68,10 @@ defmodule Iori.MixProject do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind iori", "esbuild iori"],
+      "assets.build": ["tailwind sandbox", "esbuild sandbox"],
       "assets.deploy": [
-        "tailwind iori --minify",
-        "esbuild iori --minify",
+        "tailwind sandbox --minify",
+        "esbuild sandbox --minify",
         "phx.digest"
       ]
     ]

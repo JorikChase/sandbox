@@ -8,8 +8,8 @@ const path = require("path")
 module.exports = {
   content: [
     "./js/**/*.js",
-    "../lib/iori_web.ex",
-    "../lib/iori_web/**/*.*ex"
+    "../lib/sandbox_web.ex",
+    "../lib/sandbox_web/**/*.*ex"
   ],
   theme: {
     extend: {

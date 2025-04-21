@@ -1,4 +1,4 @@
-defmodule IoriWeb.CoreComponents do
+defmodule SandboxWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -15,7 +15,7 @@ defmodule IoriWeb.CoreComponents do
   Icons are provided by [heroicons](https://heroicons.com). See `icon/1` for usage.
   """
   use Phoenix.Component
-  use Gettext, backend: IoriWeb.Gettext
+  use Gettext, backend: SandboxWeb.Gettext
 
   alias Phoenix.LiveView.JS
 
@@ -661,9 +661,9 @@ defmodule IoriWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(IoriWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SandboxWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(IoriWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SandboxWeb.Gettext, "errors", msg, opts)
     end
   end
 

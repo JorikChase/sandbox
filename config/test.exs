@@ -2,13 +2,13 @@ import Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :iori, IoriWeb.Endpoint,
+config :sandbox, SandboxWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "PnuYREbMKG+bzAAm5/VFDLQzgx6V3PvZVWu3xvIBeLpAa5qIxfhujko61teifboq",
+  secret_key_base: "fGO9cAgCzS4S9RBuDHaxb2PAWc0uOb3vfMvTiyhDjaID3hZh+UZsdHyB+vSnMf97",
   server: false
 
 # In test we don't send emails
-config :iori, Iori.Mailer, adapter: Swoosh.Adapters.Test
+config :sandbox, Sandbox.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false

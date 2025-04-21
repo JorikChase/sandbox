@@ -1,4 +1,4 @@
-defmodule Iori.Application do
+defmodule Sandbox.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,20 +8,20 @@ defmodule Iori.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      IoriWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:iori, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: Iori.PubSub},
+      SandboxWeb.Telemetry,
+      {DNSCluster, query: Application.get_env(:sandbox, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: Sandbox.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: Iori.Finch},
-      # Start a worker by calling: Iori.Worker.start_link(arg)
-      # {Iori.Worker, arg},
+      {Finch, name: Sandbox.Finch},
+      # Start a worker by calling: Sandbox.Worker.start_link(arg)
+      # {Sandbox.Worker, arg},
       # Start to serve requests, typically the last entry
-      IoriWeb.Endpoint
+      SandboxWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Iori.Supervisor]
+    opts = [strategy: :one_for_one, name: Sandbox.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -29,7 +29,7 @@ defmodule Iori.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    IoriWeb.Endpoint.config_change(changed, removed)
+    SandboxWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

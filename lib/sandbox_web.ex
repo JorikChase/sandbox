@@ -1,12 +1,12 @@
-defmodule IoriWeb do
+defmodule SandboxWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use IoriWeb, :controller
-      use IoriWeb, :html
+      use SandboxWeb, :controller
+      use SandboxWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,9 +40,9 @@ defmodule IoriWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: IoriWeb.Layouts]
+        layouts: [html: SandboxWeb.Layouts]
 
-      use Gettext, backend: IoriWeb.Gettext
+      use Gettext, backend: SandboxWeb.Gettext
 
       import Plug.Conn
 
@@ -53,7 +53,7 @@ defmodule IoriWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {IoriWeb.Layouts, :app}
+        layout: {SandboxWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -83,12 +83,12 @@ defmodule IoriWeb do
   defp html_helpers do
     quote do
       # Translation
-      use Gettext, backend: IoriWeb.Gettext
+      use Gettext, backend: SandboxWeb.Gettext
 
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components
-      import IoriWeb.CoreComponents
+      import SandboxWeb.CoreComponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -101,9 +101,9 @@ defmodule IoriWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: IoriWeb.Endpoint,
-        router: IoriWeb.Router,
-        statics: IoriWeb.static_paths()
+        endpoint: SandboxWeb.Endpoint,
+        router: SandboxWeb.Router,
+        statics: SandboxWeb.static_paths()
     end
   end
 

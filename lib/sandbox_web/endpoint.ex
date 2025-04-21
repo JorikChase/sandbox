@@ -1,13 +1,13 @@
-defmodule IoriWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :iori
+defmodule SandboxWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :sandbox
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_iori_key",
-    signing_salt: "jQwtjaCw",
+    key: "_sandbox_key",
+    signing_salt: "F/mlccGv",
     same_site: "Lax"
   ]
 
@@ -19,23 +19,11 @@ defmodule IoriWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-  plug IoriWeb.Plugs.RewriteHostPath
-
   plug Plug.Static,
     at: "/",
-    from: {:iori, "priv/static/sites"},
+    from: :sandbox,
     gzip: false,
-    # Allow all files but specify important types
-    only: ~w(assets css js images),
-    # Force correct MIME types for key files
-    content_types: %{
-      "css" => "text/css",
-      "js" => "text/javascript",
-      "wasm" => "application/wasm"
-    },
-    cache_control_for_etags: "public, max-age=86400",
-    # Disable strict MIME checking
-    headers: [{"x-content-type-options", ""}]
+    only: SandboxWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -60,5 +48,5 @@ defmodule IoriWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug IoriWeb.Router
+  plug SandboxWeb.Router
 end

@@ -1,4 +1,4 @@
-defmodule IoriWeb.Telemetry do
+defmodule SandboxWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -64,7 +64,7 @@ defmodule IoriWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {IoriWeb, :count_users, []}
+      # {SandboxWeb, :count_users, []}
     ]
   end
 end

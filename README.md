@@ -1,4 +1,4 @@
-# Iori
+# Sandbox
 
 To start your Phoenix server:
 
